@@ -1,0 +1,10 @@
+<div *ngIf="!media.isVideo; else video">
+  <img src={{media.mediaLink}}>
+  <h4>{{media.description}}</h4>
+</div>
+<ng-template #video>
+  <video controls>
+    <source src={{media.mediaLink}}>
+  </video>
+</ng-template>
+
