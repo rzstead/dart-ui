@@ -17,6 +17,7 @@ import { ProjectService } from './services/project.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ProjectFormComponent } from './project-form/project-form.component';
 import { MediaFormComponent } from './media-form/media-form.component';
+import { UserService } from './services/user.service';
 
 const appRoutes: Routes = [
   { path: 'project/:id', component: ProjectComponent },
@@ -60,6 +61,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     ProjectService,
+    UserService,
     FormBuilder
   ],
   bootstrap: [AppComponent]

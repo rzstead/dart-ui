@@ -1,3 +1,20 @@
-<p>
-  user works!
-</p>
+<div *ngIf="user" class="container-fluid p-0">
+  <div class="window" [style.background-image]="'url('+ user.backgroundLink +')'"></div>
+  <div class="avatar rounded-circle" [style.background-image]="'url('+ user.avatarLink +')'"></div>
+  <div class="card bg-dark text-white w-75 mx-auto m-5">
+    <div class="card-header text-center">
+      <div class="card-title">
+        <h3>{{user.username}}</h3>
+        <div class="card-text text-muted font-italic">
+          {{user.description}}
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-deck justify-content-center m-2">
+        <app-project-thumbnail *ngFor="let project of projectList" [projectThumb]=project class="m-2"></app-project-thumbnail>
+      </div>
+    </div>
+  </div>
+</div>
+

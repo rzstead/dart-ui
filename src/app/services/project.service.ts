@@ -20,6 +20,10 @@ export class ProjectService {
     return this.http.get<Project[]>(environment.apiLocation + "/project", { observe: 'response' });
   }
 
+  public getProjectsByUser(username: String): Observable<HttpResponse<Project[]>> {
+    return this.http.get<Project[]>(environment.apiLocation + "/project/user/" + username, { observe: 'response' });
+  }
+
   public getProject(id: string): Observable<HttpResponse<Project>> {
     return this.http.get<Project>(environment.apiLocation + "/project/" + id, { observe: 'response' });
   }

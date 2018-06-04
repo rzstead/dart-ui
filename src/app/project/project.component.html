@@ -1,4 +1,4 @@
-<div class="container-flex" *ngIf="project">
+<div class="container-flex m-4" *ngIf="project">
   <div class="card bg-dark text-white mx-auto shadow-sm" style="width: 100rem;">
     <div class="card-header">
       <div class="card-title">
@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="card-body p-4 m-2">
-      <div id="projectCarousel" class="carousel d-block w-75 mx-auto shadow-sm" data-ride="carousel">
+      <div id="projectCarousel" class="carousel d-block w-50 mx-auto shadow-sm" data-ride="carousel">
           <ol class="carousel-indicators">
               <li *ngFor="let entry of project.gallery; let i = index" data-target="#projectCarousel" data-slide-to="i" [ngClass]="i == 0 ? 'active' : ''"></li>
             </ol>
