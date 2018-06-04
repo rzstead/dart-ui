@@ -1,6 +1,32 @@
-<div class="container">
-  <div class="title">
-    <h2>{{project.title}}</h2>
-    <app-media *ngFor="let entry of project.gallery" [media]=entry></app-media>
+<div class="container-flex" *ngIf="project">
+  <div class="card bg-dark text-white mx-auto shadow-sm" style="width: 100rem;">
+    <div class="card-header">
+      <div class="card-title">
+        <h2>{{project.title}}
+          <h4>by
+            <a class="text-muted" routerLink="/user/{{project.user.username}}">{{project.user.username}}</a>
+          </h4>
+        </h2>
+      </div>
+    </div>
+    <div class="card-body p-4 m-2">
+      <div id="projectCarousel" class="carousel d-block w-75 mx-auto shadow-sm" data-ride="carousel">
+          <ol class="carousel-indicators">
+              <li *ngFor="let entry of project.gallery; let i = index" data-target="#projectCarousel" data-slide-to="i" [ngClass]="i == 0 ? 'active' : ''"></li>
+            </ol>
+        <div class="carousel-inner">
+          <app-media *ngFor="let entry of project.gallery; let i = index" [index]=i [media]=entry [ngClass]="i == 0 ? 'carousel-item active' : 'carousel-item'"></app-media>
+          <a class="carousel-control-prev" href="#projectCarousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#projectCarousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+

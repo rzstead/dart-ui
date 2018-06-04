@@ -1,10 +1,11 @@
 <a routerLink="/project/{{projectThumb.id}}">
   <div class="card bg-dark text-white" style="width: 18rem;">
-    <img class="card-img-top" src="{{projectThumb.thumbnailLink}}" alt="Card image cap">
-    <div class="card-img-overlay text-center">
+    <div class="image-back" [style.background-image]="'url(' + projectThumb.thumbnailLink + ')'"></div>
+    <div class="card-body">
       <h5 class="card-title">{{projectThumb.title}}</h5>
       <h6 class="card-subtitle mb-2">{{projectThumb.username}}</h6>
       <p class="card-text">{{projectThumb.description}}</p>
     </div>
   </div>
 </a>
+

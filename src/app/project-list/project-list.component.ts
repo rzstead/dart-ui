@@ -13,8 +13,18 @@ export class ProjectListComponent implements OnInit {
   public projectList: ProjectThumbnail[];
 
   constructor(private projectService: ProjectService) {
-    projectService.getProjects().subscribe(res => this.projectList = res.body.map(x=> new ProjectThumbnail(x.id.toString(), x.title, "Cal", "https://vignette.wikia.nocookie.net/fictspedia/images/3/39/Birb.png/revision/latest?cb=20170302044225", x.description)))
-   }
+    projectService.getProjects().subscribe(res => {
+      this.projectList = res.body.map(
+        x => new ProjectThumbnail(
+          x.id.toString(),
+          x.title,
+          x.user == null ? "Cal" : x.user.username,
+          x.gallery.length > 0 && x.gallery[0].mediaLink != null ? x.gallery[0].mediaLink : "https://s3-eu-west-1.amazonaws.com/images.linnlive.com/c773d49a2bdaf759b0c8f16e4896f7c5/dcd26252-a3b0-4cfe-98ff-987ef8e69c80.jpg",
+          x.description)
+        )
+      }
+    );
+  }
 
   ngOnInit() {
   }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Project } from '../models/project';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse, HttpRequest } from '@angular/common/http'
+import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse, HttpRequest, HttpEvent } from '@angular/common/http'
 import { environment } from '../../environments/environment';
 import { MediaEntry, PostMediaEntry } from '../models/media-entry';
 
@@ -24,18 +24,18 @@ export class ProjectService {
     return this.http.get<Project>(environment.apiLocation + "/project/" + id, { observe: 'response' });
   }
 
-  public addProject(project: Project): Observable<HttpResponse<{}>> {
-    return this.http.post(environment.apiLocation + "/project", project, { observe: 'response' });
+  public addProject(project: Project): Observable<HttpResponse<Project>> {
+    return this.http.post<Project>(environment.apiLocation + "/project", project, { observe: 'response' });
   }
 
-  private addMedia(id: string, mediaEntry: PostMediaEntry): Observable<HttpResponse<MediaEntry>> {
+  public addMedia(id: number, mediaEntry: PostMediaEntry): Observable<HttpResponse<MediaEntry>> {
     return this.http.post<MediaEntry>(environment.apiLocation + "/project/" + id + "/media", mediaEntry, { observe: 'response' });
   }
 
-  private addMediaLinkToEntry(entry: MediaEntry, file: File): Observable<HttpResponse<{}>> {
+  public addMediaLinkToEntry(id: number, file: File, isVideo: boolean): Observable<HttpEvent<{}>> {
     let formdata: FormData = new FormData();
     formdata.append('file', file);
-    return this.http.post(environment.apiLocation + "/media-entry/" + entry.id + "/media", formdata, { observe: 'response' });
+    return this.http.post(environment.apiLocation + "/media-entry/" + id + "/uploadMedia/" + isVideo, formdata, { observe: 'response', headers: new HttpHeaders() });
   }
 
 } 

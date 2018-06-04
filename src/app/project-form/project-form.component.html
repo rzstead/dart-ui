@@ -1,27 +1,28 @@
 <div class="container">
-  <div class="card p-10">
-    <div class="card-header">
+  <div class="card bg-dark text-white shadow-sm">
+    <div class="card-header bg-dark">
       <h1 class="card-title">Make a New Project</h1>
     </div>
-    <div class="card-body">
-      <form #projectForm="ngForm" class="form" (ngSubmit)="onSubmit()">
+    <div class="card-body pl-5 pr-5">
+      <form [formGroup]="projectForm" class="form" (ngSubmit)="onSubmit(projectForm.value)">
         <div class="form-group">
           <label for="title">Title</label>
-          <input type="text" class="form-control" id="title" required>
+          <input type="text" class="form-control" id="title" required formControlName="title">
         </div>
         <div class="form-group">
           <label for="description">Description</label>
-          <input type="text" class="form-control" id="description" required>
+          <input type="text" class="form-control" id="description" required formControlName="description">
         </div>
         <div class="media-form">
           <h2>Media Entries</h2>
           <button type="button" class="btn btn-sm btn-default" (click)="addMediaInput()">Add More</button>
           <hr>
-          <div class="card-deck">
-            <app-media-form *ngFor="let mediaForm of mediaForms; let i=index" [index]=i (toDelete)=deleteChild($event)></app-media-form>
+          <div class="card-group mb-3 mx-auto" formArrayName="mediaEntries">
+            <app-media-form *ngFor="let mediaEntry of projectForm.controls['mediaEntries'].controls; let i = index" [index]=i [group]="projectForm"
+              (toDelete)=deleteChild($event) (fileChanged)="updateFile($event)"></app-media-form>
           </div>
         </div>
-        <button [disabled]="mediaForms.length < 1" type="submit" class="btn btn-success">Submit</button>
+        <button [disabled]="projectForm.controls['mediaEntries'].controls.length < 1 || !projectForm.valid" type="submit" class="btn btn-success">Submit</button>
       </form>
     </div>
   </div>

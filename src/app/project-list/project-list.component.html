@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="card-group">
-      <app-project-thumbnail *ngFor="let project of projectList" [projectThumb]=project></app-project-thumbnail>
+  <div class="card-deck justify-content-center m-2">
+    <app-project-thumbnail *ngFor="let project of projectList" [projectThumb]=project></app-project-thumbnail>
   </div>
 </div>

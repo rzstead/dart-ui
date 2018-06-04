@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { PostMediaEntry } from '../models/media-entry';
+import { ControlContainer, NgForm, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-media-form',
@@ -9,8 +11,13 @@ export class MediaFormComponent implements OnInit {
 
   @Input()
   index: number;
+  @Input()
+  group: FormGroup;
   @Output()
   toDelete = new EventEmitter<number>();
+  @Output()
+  fileChanged = new EventEmitter<[number, File]>();
+
   constructor() { }
 
   ngOnInit() {
@@ -19,5 +26,14 @@ export class MediaFormComponent implements OnInit {
   public removeForm(index: number){
     this.toDelete.emit(index);
   }
+
+  public fileChange(event){
+    const fileList: FileList = event.target.files;
+    if(fileList.length > 0){
+      const file = fileList.item(0);
+      this.fileChanged.emit([this.index, file]);
+    }
+  }
+
 
 }

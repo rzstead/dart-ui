@@ -1,10 +1,12 @@
-<div *ngIf="!media.isVideo; else video">
-  <img src={{media.mediaLink}}>
-  <h4>{{media.description}}</h4>
-</div>
-<ng-template #video>
-  <video controls>
-    <source src={{media.mediaLink}}>
-  </video>
-</ng-template>
+  <div *ngIf="!media.isVideo; else video">
+    <img class="d-block w-100" src={{media.mediaLink}}>
+  </div>
+  <ng-template #video >
+    <video controls class="d-block w-100">
+      <source src={{media.mediaLink}}>
+    </video>
+  </ng-template>
+  <div class="carousel-caption d-none d-md-block">
+      <h5>{{media.description}}</h5>
+  </div>
 

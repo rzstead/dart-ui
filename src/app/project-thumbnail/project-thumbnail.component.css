@@ -2,3 +2,10 @@
     border-radius: 0px;
     outline-style: none;
 }
+
+.image-back{
+    height: 10rem;
+    width: 100%;
+    background-size: cover;
+    background-position: 50%;
+}

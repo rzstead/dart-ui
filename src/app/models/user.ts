@@ -5,4 +5,12 @@ export class User{
 	public description: string;
 	public avatarLink: string;
 	public backgroundLink: string;
+
+	public static makeFakeUser(): User{
+		let user: User = new User();
+		user.username = "Cal";
+		user.password = "thebest";
+		return user;
+	}
+
 }

@@ -16,6 +16,12 @@ export class PostMediaEntry{
     public media: File;
     public isVideo: boolean;
 
+    public constructor(description: string, media: File, isVideo: boolean){
+        this.description = description;
+        this.media = media;
+        this.isVideo = isVideo;
+    }
+
     public toMediaEntry(): MediaEntry{
         return new MediaEntry(this.description, this.isVideo);
     }

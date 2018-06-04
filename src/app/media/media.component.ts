@@ -10,6 +10,8 @@ export class MediaComponent implements OnInit {
 
   @Input()
   media: MediaEntry;
+  @Input()
+  index: number;
 
   constructor() { }
 
